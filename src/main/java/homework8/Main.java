@@ -7,11 +7,9 @@ import homework8.service.TransactionService;
 import homework8.util.Helper;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
+import static homework8.MyScanner.scanner;
 
 public class Main {
-    public static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
         Client sender = new Client("Alex_Stone", "Stone", "Alex Stone", 0);
         TransactionService transactionService = new TransactionService();
@@ -27,6 +25,8 @@ public class Main {
 
         transactionService.transferOfMoney(sender, senderID);
         System.out.println("Transfer completed successfully!");
+
+        scanner.close();
     }
 
     public static String inputValue() {
