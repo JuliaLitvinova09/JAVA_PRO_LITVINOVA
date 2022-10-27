@@ -40,7 +40,7 @@ public class InitializationData {
             information.setUserMail(userMail);
             information.setUserInfo(hashMapUserInfo);
         } else {
-            System.out.println("initialization error");
+              System.out.println("initialization error");
         }
     }
 
@@ -48,8 +48,6 @@ public class InitializationData {
     //  необходимо, чтобы размер 3х полей был одинаковым(List.size() == Set.size() = Map.size()).
     private static boolean checkSize(ArrayList<String> userLogin, HashSet<String> userMail,
                                      HashMap<String, String> hashMapUserInfo) {
-        if ((userLogin.size() == userMail.size()) && (userMail.size() == hashMapUserInfo.size())) {
-            return true;
-        } else return false;
+        return ((userLogin.size() == userMail.size()) && (userMail.size() == hashMapUserInfo.size()));
     }
 }

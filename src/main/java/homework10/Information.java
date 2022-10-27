@@ -5,12 +5,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Information {
-    private ArrayList<String> userLogin = new ArrayList<>();
-    private HashSet<String> userMail = new HashSet<>();
-    private HashMap<String, String> userInfo = new HashMap<>();
+    private ArrayList<String> userLogin = null;
+    private HashSet<String> userMail = null;
+    private HashMap<String, String> userInfo = null;
 
     public ArrayList<String> getUserLogin() {
         return userLogin;
+    }
+
+    public Information() {
+        userLogin = new ArrayList<>();
+        userMail = new HashSet<>();
+        userInfo = new HashMap<>();
     }
 
     public void setUserLogin(ArrayList<String> userLogin) {
