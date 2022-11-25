@@ -5,11 +5,10 @@ import homework17.ServiceClass;
 public class UserRunnable implements Runnable {
     @Override
     public void run() {
-
+        System.out.println();
         for (int i = 0; i < 1000; i++) {
-            System.out.println("UserRunnable is running....Thread " + Thread.currentThread().getName());
-            ServiceClass.getThreadInfo();
-
+            System.out.println("UserRunnable, thread " + Thread.currentThread().getName() +
+                    "; counter: " + ServiceClass.getThreadInfo());
         }
 
     }
