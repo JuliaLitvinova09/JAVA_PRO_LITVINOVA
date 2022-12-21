@@ -33,26 +33,29 @@ public class Main {
         //updateClientTable();  // изменение данных клиента Nadya
         // deleteClientTable();  // удаление клиента Nadya
 
-       // List<Client> clients = clientService.getAll(); // получение списка клиентов
+        // List<Client> clients = clientService.getAll(); // получение списка клиентов
         // clients.forEach(System.out::println);
 
 //        Client client = clientService.findByPhone(380661233321l); // поиск по номеру телефона
 //        System.out.println(client);
 
         //2. РАБОТА С СУЩНОСТЬЮ "STATUS"
-       // saveToStatusTable();   // Статус ид=4 сохраняем в базу
+        // saveToStatusTable();   // Статус ид=4 сохраняем в базу
         //updateStatusTable();  //  меняем название  на верхний регистр
-       //  deleteStatusTable();  // удаление статуса ид=4
+        //  deleteStatusTable();  // удаление статуса ид=4
 
 //        List <Status> statusList = statusService.getAll(); // получение списка статусов
 //        statusList.forEach(System.out::println);
 
         //3. РАБОТА С СУЩНОСТЬЮ "ACCOUNT"
-        saveToAccountTable();
-        updateAccountTable();
-        deleteAccountable();
+//        saveToAccountTable();
+//        updateAccountTable();
+//        deleteAccountable();
 
-        List <Account> accountList = accountService.getAll(); // получение списка счетов
+        List<String> accounts = accountService.getListNumberByValue(120.55); // получение списка счетов по условию
+        accounts.forEach(System.out::println);
+
+        List<Account> accountList = accountService.getAll(); // получение списка счетов
         accountList.forEach(System.out::println);
     }
 
@@ -123,4 +126,3 @@ public class Main {
     }
 
 }
-

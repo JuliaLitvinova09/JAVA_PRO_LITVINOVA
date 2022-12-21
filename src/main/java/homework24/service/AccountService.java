@@ -2,6 +2,7 @@ package homework24.service;
 
 import homework24.DataBase;
 import homework24.entity.Account;
+import homework24.entity.Client;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class AccountService {
     private String QUERY_UPDATE = "UPDATE accounts SET value=? WHERE client_id=?";
     private String QUERY_DELETE = "DELETE FROM accounts WHERE client_id=?";
     private String QUERY_GET_ALL = "SELECT * FROM accounts";
+    private String QUERY_GET_NUMBER = "SELECT number FROM accounts WHERE value>?";
 
     public List<Account> getAll() {
         List<Account> accounts = new ArrayList<>();
@@ -75,6 +77,23 @@ public class AccountService {
         }
     }
 
+    public List<String> getListNumberByValue(double value) {
+        List<String> accounts = new ArrayList<>();
+
+        try (Connection connection = DataBase.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(QUERY_GET_NUMBER)) {
+            connection.setAutoCommit(false);
+            preparedStatement.setDouble(1, value);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            connection.commit();
+            while (resultSet.next()) {
+                accounts.add(resultSet.getString("number"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accounts;
+    }
 }
 
 
