@@ -47,7 +47,7 @@ public class Main {
 //        List <Status> statusList = statusService.getAll(); // получение списка статусов
 //        statusList.forEach(System.out::println);
 
-        //3. РАБОТА С СУЩНОСТЬЮ "Account"
+        //3. РАБОТА С СУЩНОСТЬЮ "ACCOUNT"
         saveToAccountTable();
         updateAccountTable();
         deleteAccountable();
