@@ -10,10 +10,11 @@ import java.util.List;
 
 public class AccountService {
     private String QUERY_SAVE = "INSERT INTO accounts (client_id,number,value) VALUES (?,?,?)";
-    private String QUERY_UPDATE = "UPDATE accounts SET value=? WHERE client_id=?";
+    private String QUERY_UPDATE = "UPDATE accounts SET value=? WHERE client_id=? and number=?";
     private String QUERY_DELETE = "DELETE FROM accounts WHERE client_id=?";
     private String QUERY_GET_ALL = "SELECT * FROM accounts";
     private String QUERY_GET_NUMBER = "SELECT number FROM accounts WHERE value>?";
+
 
     public List<Account> getAll() {
         List<Account> accounts = new ArrayList<>();
@@ -56,6 +57,7 @@ public class AccountService {
 
             preparedStatement.setDouble(1, account.getValue());
             preparedStatement.setInt(2, account.getClient_id());
+            preparedStatement.setString(3, account.getNumber());
             preparedStatement.execute();
             connection.commit();
         } catch (SQLException e) {
@@ -94,6 +96,7 @@ public class AccountService {
         }
         return accounts;
     }
+
 }
 
 
