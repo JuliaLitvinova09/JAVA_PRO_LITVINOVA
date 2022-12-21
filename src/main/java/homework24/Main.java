@@ -1,7 +1,9 @@
 package homework24;
 
+import homework24.entity.Account;
 import homework24.entity.Client;
 import homework24.entity.Status;
+import homework24.service.AccountService;
 import homework24.service.ClientService;
 import homework24.service.StatusService;
 
@@ -22,6 +24,7 @@ import java.util.List;
 public class Main {
     public static ClientService clientService = new ClientService();
     public static StatusService statusService = new StatusService();
+    public static AccountService accountService = new AccountService();
 
     public static void main(String[] args) {
         //1. РАБОТА С СУЩНОСТЬЮ "КЛИЕНТ"
@@ -41,8 +44,16 @@ public class Main {
         //updateStatusTable();  //  меняем название  на верхний регистр
        //  deleteStatusTable();  // удаление статуса ид=4
 
-//        List <Status> statusList = statusService.getAll(); // получение списка клиентов
+//        List <Status> statusList = statusService.getAll(); // получение списка статусов
 //        statusList.forEach(System.out::println);
+
+        //3. РАБОТА С СУЩНОСТЬЮ "Account"
+        saveToAccountTable();
+        updateAccountTable();
+        deleteAccountable();
+
+        List <Account> accountList = accountService.getAll(); // получение списка счетов
+        accountList.forEach(System.out::println);
     }
 
     public static void saveToClientTable() {
@@ -88,6 +99,27 @@ public class Main {
         Status status = new Status();
         status.setId(4);
         statusService.delete(status);
+    }
+
+    public static void saveToAccountTable() {
+        Account account = new Account();
+        account.setClient_id(17);
+        account.setValue(12560.00);
+        account.setNumber("26005325354");
+        accountService.save(account);
+    }
+
+    public static void updateAccountTable() {
+        Account account = new Account();
+        account.setClient_id(17);
+        account.setValue(456235.55);
+        accountService.update(account);
+    }
+
+    public static void deleteAccountable() {
+        Account account = new Account();
+        account.setClient_id(17);
+        accountService.delete(account);
     }
 
 }
