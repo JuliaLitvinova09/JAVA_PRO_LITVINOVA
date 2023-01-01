@@ -1,69 +1,69 @@
-package homework25.dao;
+package homework26.dao;
 
-import homework25.model.Account;
-import homework25.util.HibernateConfiguration;
+import homework26.model.Book;
+import homework26.util.HibernateConfiguration;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class AccountDao {
-    public void save(Account account) {
+public class BookDao {
+    public void save(Book book) {
+        SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(book);
+
+        transaction.commit();
+        session.close();
+    }
+
+    public Book getById(int id) {
+        SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Book book = session.get(Book.class, id);
+
+        transaction.commit();
+        session.close();
+
+        return book;
+    }
+
+    public void update(Book book) {
         final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         final Session session = sessionFactory.openSession();
         final Transaction transaction = session.beginTransaction();
 
-        session.save(account);
+        session.update(book);
 
         transaction.commit();
         session.close();
     }
 
-    public Account getById(int id) {
+    public void delete(Book book) {
         SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Account account = session.get(Account.class, id);
-
-        transaction.commit();
-        session.close();
-
-        return account;
-    }
-
-    public void update(Account account) {
-        final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
-        final Session session = sessionFactory.openSession();
-        final Transaction transaction = session.beginTransaction();
-
-        session.update(account);
+        session.delete(book);
 
         transaction.commit();
         session.close();
     }
 
-    public void delete(Account account) {
+    public List<Book> getAll() {
         SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        session.delete(account);
-
-        transaction.commit();
-        session.close();
-    }
-
-    public List<Account> getAll() {
-        SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-
-        List<Account> accountList = session.createQuery("from Chain").list();
+        List<Book> bookList = session.createQuery("from Book").list();
         transaction.commit();
         session.close();
 
-        return accountList;
+        return bookList;
     }
 }
